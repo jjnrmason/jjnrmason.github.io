@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>John Mason</title>
+<meta name="description" content="John Mason, Senior Integration Engineer at PebblePad. .NET, AWS, APIs and applied AI.">
+<meta property="og:title" content="John Mason">
+<meta property="og:description" content="Senior Integration Engineer at PebblePad. .NET, AWS, APIs and applied AI.">
+<meta property="og:type" content="website">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312201E'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23F3F6F5' text-anchor='middle'%3EJM%3C/text%3E%3C/svg%3E">
+<style>
+/* Base reset (the Claude artifact viewer supplied this; GitHub Pages needs it inline) */
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: single 1080px column; hero pairs a pitch with an API-response card; the career reads as a semver changelog. */
+:root {
+  --bg: #F3F6F5;
+  --surface: #FFFFFF;
+  --ink: #12201E;
+  --ink-2: #44524F;
+  --muted: #6B7A77;
+  --line: #D9E1DF;
+  --accent: #0A7568;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DCEFEA;
+  --mark: #B5571A;
+  --mark-soft: #F8E8DC;
+  --code-bg: #10201D;
+  --code-fg: #D6E5E1;
+  --code-key: #7FD6C6;
+  --code-str: #F2B98C;
+  --code-dim: #7D918D;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1514; --surface: #142120; --ink: #E4EEEB; --ink-2: #A8BAB6; --muted: #7F918D;
+    --line: #253532; --accent: #46C3AF; --accent-ink: #082420; --accent-soft: #163631;
+    --mark: #F0A266; --mark-soft: #3A2616;
+    --code-bg: #091110; --code-fg: #D6E5E1; --code-key: #7FD6C6; --code-str: #F2B98C; --code-dim: #6E827E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1514; --surface: #142120; --ink: #E4EEEB; --ink-2: #A8BAB6; --muted: #7F918D;
+  --line: #253532; --accent: #46C3AF; --accent-ink: #082420; --accent-soft: #163631;
+  --mark: #F0A266; --mark-soft: #3A2616;
+  --code-bg: #091110; --code-fg: #D6E5E1; --code-key: #7FD6C6; --code-str: #F2B98C; --code-dim: #6E827E;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h2 { font-size: clamp(1.7rem, 3.2vw, 2.3rem); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--ink-2); max-width: 62ch; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--font-display); font-weight: 700; }
+.mono-badge { width: 34px; height: 34px; border-radius: 8px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-size: 0.9rem; letter-spacing: 0.02em; }
+.top nav { display: flex; gap: 4px 18px; flex-wrap: wrap; font-size: 0.92rem; }
+.top nav a { color: var(--ink-2); text-decoration: none; }
+.top nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center; padding-block: 40px 56px; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(3rem, 8vw, 5.6rem); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; }
+.hero .role { margin-top: 14px; font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.45rem); font-weight: 500; color: var(--ink-2); }
+.hero .role b { color: var(--ink); font-weight: 700; }
+.hero .lede { margin-top: 20px; font-size: 1.06rem; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:hover { border-color: var(--accent); }
+
+.api { background: var(--code-bg); color: var(--code-fg); border-radius: 14px; font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.7; overflow: hidden; box-shadow: 0 18px 40px -24px rgba(6, 30, 26, 0.55); }
+.api-head { display: flex; justify-content: space-between; gap: 12px; padding: 12px 18px; border-bottom: 1px solid rgba(214, 229, 225, 0.12); flex-wrap: wrap; }
+.api-head .verb { color: var(--code-key); font-weight: 500; }
+.api-head .status { color: var(--code-str); }
+.api pre { margin: 0; padding: 16px 18px 20px; overflow-x: auto; white-space: pre; font: inherit; }
+.k { color: var(--code-key); } .s { color: var(--code-str); } .d { color: var(--code-dim); }
+
+/* Sections */
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: 10px; margin-bottom: 28px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 16px 14px; display: grid; gap: 4px; align-content: start; }
+.stat .v { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 0.86rem; color: var(--ink-2); line-height: 1.35; }
+
+/* Chart */
+.chart-card { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; }
+.chart-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.seg { display: inline-flex; gap: 4px; padding: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 9px; flex-wrap: wrap; }
+.seg button { font: inherit; font-size: 0.86rem; border: 0; background: transparent; color: var(--ink-2); padding: 6px 11px; border-radius: 6px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+.chart-wrap { position: relative; }
+.chart-wrap svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 0.82rem; padding: 7px 10px; border-radius: 7px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); line-height: 1.35; }
+.tip b { font-variant-numeric: tabular-nums; }
+.chart-note { font-size: 0.84rem; color: var(--muted); margin-top: 8px; }
+details.table-view { margin-top: 12px; font-size: 0.9rem; }
+details.table-view summary { cursor: pointer; color: var(--ink-2); }
+.tscroll { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+th:first-child, td:first-child { text-align: left; }
+th { font-weight: 600; color: var(--ink-2); font-size: 0.85rem; }
+
+/* Changelog */
+.log { display: grid; gap: 0; }
+.rel { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; padding-block: 28px; border-top: 1px dashed var(--line); }
+.rel:first-child { border-top: 0; padding-top: 0; }
+.rel-meta { display: grid; gap: 8px; align-content: start; }
+.ver { font-family: var(--font-mono); font-size: 0.85rem; display: inline-flex; gap: 8px; align-items: center; }
+.ver .tag { background: var(--mark-soft); color: var(--mark); padding: 2px 8px; border-radius: 999px; font-weight: 500; }
+.ver .tag.latest { background: var(--accent); color: var(--accent-ink); }
+.rel-meta h3 { font-size: 1.3rem; }
+.rel-meta .when { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+.rel-body { display: grid; gap: 18px; }
+.yr { display: grid; gap: 6px; }
+.yr h4 { margin: 0; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; color: var(--accent); letter-spacing: 0.04em; }
+.rel-body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; color: var(--ink-2); }
+.rel-body li::marker { color: var(--muted); }
+.rel-body li b { color: var(--ink); font-weight: 600; }
+
+/* Work */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.chip { font: inherit; font-size: 0.88rem; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px; min-width: 0; }
+.card .meta { display: flex; justify-content: space-between; gap: 8px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card p { color: var(--ink-2); font-size: 0.94rem; }
+.card .foot { display: grid; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
+.card .figure { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink); }
+.card .stack { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
+.card.oss { border-color: var(--accent); background: var(--accent-soft); }
+
+/* Practice */
+.practice { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 32px; }
+.practice div { display: grid; gap: 6px; align-content: start; }
+.practice p { color: var(--ink-2); font-size: 0.95rem; }
+
+/* Reviews */
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 8px; }
+.review { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; display: grid; gap: 8px; align-content: start; }
+.review .kind { font-family: var(--font-mono); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.review p { color: var(--ink-2); font-size: 0.93rem; }
+.review .out { color: var(--ink); }
+
+/* Writing */
+.writing { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 32px; align-items: start; }
+.adr-list { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.adr-list li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.94rem; }
+.adr-list .id { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; }
+.writing .facts { display: grid; gap: 14px; }
+.writing .facts p { color: var(--ink-2); }
+
+/* Stack */
+.stackgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+.stackgrid div { display: grid; gap: 8px; align-content: start; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { font-family: var(--font-mono); font-size: 0.78rem; padding: 3px 9px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); }
+
+/* Education + contact */
+.edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.edu .item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; display: grid; gap: 4px; }
+.edu .item .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.edu .item p { color: var(--ink-2); font-size: 0.94rem; }
+.contact { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+footer { padding-block: 28px 48px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--muted); }
+footer p { max-width: 80ch; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; padding-block: 24px 40px; }
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .practice, .reviews, .stackgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .writing { grid-template-columns: 1fr; }
+  .rel { grid-template-columns: 1fr; gap: 14px; }
+}
+@media (max-width: 560px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .practice, .reviews, .stackgrid, .edu { grid-template-columns: 1fr; }
+  .chart-card { padding: 14px; }
+  .api { font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="John Mason, back to top"><span class="mono-badge" aria-hidden="true">JM</span>John Mason</a>
+    <nav aria-label="Sections">
+      <a href="#numbers">Numbers</a>
+      <a href="#changelog">Career</a>
+      <a href="#work">Work</a>
+      <a href="#practice">How I work</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="top">
+    <div>
+      <h1>John<br>Mason</h1>
+      <p class="role"><b>Senior Integration Engineer</b> at PebblePad</p>
+      <p class="lede">I build the APIs, cloud platform and AI tooling behind a learning platform that thousands of learners and educators use every day. I joined PebblePad as an apprentice in 2020 and have spent six years working across the .NET core, AWS, data pipelines and applied AI.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn" href="https://github.com/jjnrmason" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://github.com/WeekTwenty/Pacer" target="_blank" rel="noopener">Pacer (open source)</a>
+      </div>
+    </div>
+    <div class="api" role="img" aria-label="A mock API response summarising John: Senior Integration Engineer at PebblePad since July 2020, based in Shropshire, working in .NET, C# and AWS on APIs, platform reliability, data engineering and applied AI.">
+      <div class="api-head"><span><span class="verb">GET</span> /v1/engineers/john-mason</span><span class="status">200 OK</span></div>
+<pre><span class="d">{</span>
+  <span class="k">"role"</span>: <span class="s">"Senior Integration Engineer"</span>,
+  <span class="k">"employer"</span>: <span class="s">"PebblePad"</span>,
+  <span class="k">"since"</span>: <span class="s">"2020-07"</span>,
+  <span class="k">"location"</span>: <span class="s">"Shropshire, UK"</span>,
+  <span class="k">"stack"</span>: [<span class="s">".NET"</span>, <span class="s">"C#"</span>, <span class="s">"AWS"</span>, <span class="s">"Python"</span>],
+  <span class="k">"focus"</span>: [
+    <span class="s">"APIs and integrations"</span>,
+    <span class="s">"platform reliability"</span>,
+    <span class="s">"data engineering"</span>,
+    <span class="s">"applied AI"</span>
+  ],
+  <span class="k">"degree"</span>: <span class="s">"BSc Digital and Technology, First"</span>,
+  <span class="k">"openSource"</span>: <span class="s">"WeekTwenty/Pacer"</span>
+<span class="d">}</span></pre>
+    </div>
+  </div>
+
+  <section id="numbers" aria-labelledby="numbers-h">
+    <div class="sec-head">
+      <span class="eyebrow">Mar 2021 to Oct 2026</span>
+      <h2 id="numbers-h">The record</h2>
+      <p class="lede">Counted from git history across PebblePad's repositories and from Azure DevOps. Work from my first eight months lived in older systems and isn't included.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="v">642</span><span class="l">pull requests authored and merged</span></div>
+      <div class="stat"><span class="v">4,256</span><span class="l">commits across 38 repositories</span></div>
+      <div class="stat"><span class="v">1,592+</span><span class="l">review votes on colleagues' pull requests</span></div>
+      <div class="stat"><span class="v">506</span><span class="l">work items closed, 114 of them research spikes</span></div>
+      <div class="stat"><span class="v">17</span><span class="l">architecture decision records</span></div>
+      <div class="stat"><span class="v">186</span><span class="l">engineering wiki pages created</span></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-top">
+        <h3 id="chart-title">Commits per year</h3>
+        <div class="seg" role="group" aria-label="Choose a measure">
+          <button type="button" id="m-c" data-m="c" aria-pressed="true">Commits</button>
+          <button type="button" id="m-p" data-m="p" aria-pressed="false">Pull requests</button>
+          <button type="button" id="m-r" data-m="r" aria-pressed="false">Reviews</button>
+          <button type="button" id="m-w" data-m="w" aria-pressed="false">Work items</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="chart-wrap">
+        <svg id="chart" viewBox="0 0 640 270" role="img" aria-labelledby="chart-title"></svg>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+      <p class="chart-note">2021 counts from March. 2026 counts to 19 October and is already the biggest year for commits, pull requests and closed work items. Work items before 2022 were tracked in Jira.</p>
+      <details class="table-view">
+        <summary>Show as a table</summary>
+        <div class="tscroll">
+          <table>
+            <thead><tr><th scope="col">Year</th><th scope="col">Commits</th><th scope="col">Pull requests</th><th scope="col">Review votes</th><th scope="col">Work items closed</th></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="changelog" aria-labelledby="changelog-h">
+    <div class="sec-head">
+      <span class="eyebrow">CHANGELOG.md</span>
+      <h2 id="changelog-h">Career changelog</h2>
+      <p class="lede">Each major version is a promotion. Apprentice to senior in six years, alongside a first-class degree.</p>
+    </div>
+    <div class="log">
+      <article class="rel">
+        <div class="rel-meta">
+          <span class="ver">v4.0.0 <span class="tag latest">current</span></span>
+          <h3>Senior Integration Engineer</h3>
+          <span class="when">Nov 2026 to now</span>
+        </div>
+        <div class="rel-body">
+          <ul>
+            <li><b>API framework.</b> Building how customers and services authenticate to PebblePad's new APIs: KMS-backed signing keys with rotation, a public JWKS endpoint, a Native AOT Lambda authorizer in front of API Gateway, and API key usage tracking.</li>
+            <li>Took the framework's ten architecture decision records from proposal to accepted, after a full review of the epic with the team.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rel">
+        <div class="rel-meta">
+          <span class="ver">v3.0.0 <span class="tag">promoted</span></span>
+          <h3>Software Engineer II</h3>
+          <span class="when">Oct 2025 to Nov 2026</span>
+        </div>
+        <div class="rel-body">
+          <ul>
+            <li><b>AI Workspace Wizard.</b> Led the backend of an AI-assisted way to create workspaces, from a two-week investigation to closed beta.</li>
+            <li><b>Caching incident.</b> Ran the root cause analysis on a production caching incident, hardened the cache library, and turned the findings into a company-wide observability and resilience strategy.</li>
+            <li><b>Pebble Brain.</b> Built a retrieval system over our own engineering knowledge, queried by coding agents over MCP.</li>
+            <li><b>Analytical data platform.</b> A PySpark and AWS Glue ingestion platform on a medallion architecture: 147 commits and 42,000 lines.</li>
+            <li><b>API framework decisions.</b> Wrote ADRs on customer and service authentication, PKCE, scopes, per-organisation rate limits, signing keys, token revocation and the API front door, backed by a JWT signing benchmark.</li>
+            <li><b>Recovery readiness.</b> Wrote the test strategy, risk assessment and executive-level design for a technical recovery programme, then built the post-restore validation, data repair tooling and customer-query runbooks.</li>
+            <li><b>Security reviews.</b> Led security reviews of the core platform, frontend and payment service, with proof-of-concept testing to confirm impact and prioritised fixes for each finding.</li>
+            <li><b>AI adoption.</b> Lead the engineering Community of Practice on AI and wrote shared agentic tooling for the team.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rel">
+        <div class="rel-meta">
+          <span class="ver">v2.0.0 <span class="tag">promoted</span></span>
+          <h3>Application Developer</h3>
+          <span class="when">Aug 2024 to Oct 2025</span>
+        </div>
+        <div class="rel-body">
+          <ul>
+            <li><b>Multi-instance PebblePad.</b> Impact assessments across a dozen subsystems for running load-balanced, plus primary-server protections for email and purging.</li>
+            <li><b>Health Check API</b> across every application, with runbooks and a load-balanced testing guide.</li>
+            <li><b>Distributed cache.</b> Rolled Valkey out across MVC, API and libraries; tag-based invalidation, Lua scripting, a login circuit breaker and performance testing.</li>
+            <li><b>Progress Tracking to the cloud</b> on ECS with FIFO queues, scaling and service-to-service auth.</li>
+            <li>Moved report and file delivery to S3 and CloudFront, and removed WebStore and legacy SSO code.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="rel">
+        <div class="rel-meta">
+          <span class="ver">v1.0.0 <span class="tag">first release</span></span>
+          <h3>Apprentice Application Developer</h3>
+          <span class="when">Jul 2020 to Aug 2024</span>
+        </div>
+        <div class="rel-body">
+          <div class="yr"><h4>2024</h4>
+            <ul>
+              <li><b>AWS foundations.</b> Shared CDK construct library published as NuGet packages, a cloud reporting service on ECS, and a least-privilege compliance Lambda.</li>
+              <li>Research that became decisions: JWT auth in AWS, job scheduling, and the Redis vs Valkey ADR.</li>
+            </ul>
+          </div>
+          <div class="yr"><h4>2023</h4>
+            <ul>
+              <li>Replaced the scripted TeamCity build with <b>Nuke</b> and documented the whole build estate.</li>
+              <li>Designed a <b>unified data-access library</b> over MongoDB and NHibernate, plus the transactions ADR and coding guideline.</li>
+              <li>Synthetic data generation in Python, and database and storage clean-up tooling.</li>
+            </ul>
+          </div>
+          <div class="yr"><h4>2022</h4>
+            <ul>
+              <li>Busiest year by commits: 1,223 commits and 214 pull requests.</li>
+              <li>Built the <b>analytics platform</b>, worked on the <b>public REST API</b>, and led the removal of Flash and Flourish code, about 190,000 lines.</li>
+            </ul>
+          </div>
+          <div class="yr"><h4>2020 to 2021</h4>
+            <ul>
+              <li>Reusable React components, dashboard notifications end to end, and developer machine automation.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="sec-head">
+      <span class="eyebrow">Selected work</span>
+      <h2 id="work-h">Things I've built</h2>
+    </div>
+    <div class="chips" role="group" aria-label="Filter projects">
+      <button type="button" class="chip" id="f-all" data-f="all" aria-pressed="true">All</button>
+      <button type="button" class="chip" id="f-api" data-f="api" aria-pressed="false">APIs and integrations</button>
+      <button type="button" class="chip" id="f-platform" data-f="platform" aria-pressed="false">Platform and reliability</button>
+      <button type="button" class="chip" id="f-data" data-f="data" aria-pressed="false">Data</button>
+      <button type="button" class="chip" id="f-ai" data-f="ai" aria-pressed="false">AI</button>
+      <button type="button" class="chip" id="f-security" data-f="security" aria-pressed="false">Security</button>
+      <button type="button" class="chip" id="f-quality" data-f="quality" aria-pressed="false">Build and clean-up</button>
+    </div>
+    <div class="grid" id="cards">
+      <article class="card" data-tags="api">
+        <div class="meta"><span>APIs</span><span>2026</span></div>
+        <h3>API authentication framework</h3>
+        <p>How customers and services authenticate to PebblePad's new APIs. Ten ADRs covering auth flows, PKCE, scopes, rate limits, signing keys and revocation, then the build: KMS-backed signing keys with rotation, a public JWKS endpoint and a Native AOT Lambda authorizer.</p>
+        <div class="foot"><span class="figure">10 ADRs · JWT signing benchmark</span><span class="stack">.NET 10 · AWS KMS · API Gateway · Lambda · CDK</span></div>
+      </article>
+      <article class="card" data-tags="ai">
+        <div class="meta"><span>AI</span><span>2026</span></div>
+        <h3>AI Workspace Wizard</h3>
+        <p>Led the backend of a template-driven, AI-assisted way to create workspaces: page endpoints, prompts and embeddings, validation and retry, LTI support and a performance pass, from investigation to closed beta.</p>
+        <div class="foot"><span class="figure">Closed beta 2026</span><span class="stack">C# · ASP.NET · OpenAI · LTI</span></div>
+      </article>
+      <article class="card" data-tags="ai data">
+        <div class="meta"><span>AI</span><span>2026</span></div>
+        <h3>Pebble Brain</h3>
+        <p>A knowledge base over our own engineering material, built from scratch. Vector storage, an ingestion worker that pulls in the wiki and pull-request review comments, reranked retrieval, and an MCP API that coding agents query.</p>
+        <div class="foot"><span class="figure">54 commits · 26,500 lines</span><span class="stack">PostgreSQL · pgvector · MCP · Linux · TeamCity</span></div>
+      </article>
+      <article class="card" data-tags="data">
+        <div class="meta"><span>Data</span><span>2026</span></div>
+        <h3>Analytical data platform</h3>
+        <p>Ingestion into a medallion architecture: typed contracts, chunked and resumable extraction, a progress store, an orchestrator, validation suites, nine runbooks and a cost model.</p>
+        <div class="foot"><span class="figure">147 commits · 40 PRs · 42,000 lines</span><span class="stack">Python · PySpark · AWS Glue · MongoDB · S3</span></div>
+      </article>
+      <article class="card" data-tags="platform">
+        <div class="meta"><span>Reliability</span><span>2025 to 2026</span></div>
+        <h3>Distributed cache and resilience</h3>
+        <p>Rolled Valkey out across the platform. After a production caching incident I led the root cause analysis, added safety guards, jitter, backoff and hit/miss/timeout metrics, then wrote the Logging and Monitoring Manifesto that came out of it.</p>
+        <div class="foot"><span class="figure">Incident to company-wide strategy</span><span class="stack">C# · Valkey · FusionCache · Lua</span></div>
+      </article>
+      <article class="card" data-tags="ai quality">
+        <div class="meta"><span>AI</span><span>2026</span></div>
+        <h3>Agentic engineering</h3>
+        <p>I lead the engineering Community of Practice on AI adoption. I wrote shared Claude Code skills for unit tests, PR summaries, ticket planning and test plans, extended the ticket workflow, and wrote the team's usage guidelines.</p>
+        <div class="foot"><span class="figure">Shared skills and guidelines</span><span class="stack">Claude Code · MCP · Azure DevOps</span></div>
+      </article>
+      <article class="card" data-tags="platform">
+        <div class="meta"><span>Cloud</span><span>2024 to 2025</span></div>
+        <h3>AWS platform and cloud services</h3>
+        <p>A shared CDK construct library published as NuGet packages, an SQS-driven reporting service on ECS, a least-privilege compliance Lambda, and Progress Tracking moved to ECS with service-to-service auth.</p>
+        <div class="foot"><span class="figure">112 commits to the construct library</span><span class="stack">AWS CDK · ECS · Lambda · SQS · EventBridge</span></div>
+      </article>
+      <article class="card" data-tags="platform">
+        <div class="meta"><span>Reliability</span><span>2025</span></div>
+        <h3>Multi-instance PebblePad</h3>
+        <p>Impact assessments for running PebblePad load-balanced, primary-server protections for email and purging, and a Health Check API across every application, with runbooks.</p>
+        <div class="foot"><span class="figure">7 applications with health checks</span><span class="stack">C# · IIS · TeamCity</span></div>
+      </article>
+      <article class="card" data-tags="platform data">
+        <div class="meta"><span>Reliability</span><span>2026</span></div>
+        <h3>Recovery readiness</h3>
+        <p>Part of a technical recovery programme. I wrote the test strategy, risk assessment and a high-level design for an executive audience, then built post-restore validation, end-to-end tests against PostgreSQL, data repair tooling and runbooks for customer queries.</p>
+        <div class="foot"><span class="figure">Strategy through to runbooks</span><span class="stack">C# · MongoDB · PostgreSQL · ClickHouse</span></div>
+      </article>
+      <article class="card" data-tags="security">
+        <div class="meta"><span>Security</span><span>2026</span></div>
+        <h3>Security reviews</h3>
+        <p>Led security reviews of the core platform, the frontend and the payment service, with hands-on proof-of-concept testing to confirm impact. Each review ended in prioritised findings and a recommended fix. I also prototyped an AI-driven security review step for the build pipeline.</p>
+        <div class="foot"><span class="figure">Prioritised findings with fixes</span><span class="stack">Code review · PoC testing · Azure Pipelines</span></div>
+      </article>
+      <article class="card" data-tags="data">
+        <div class="meta"><span>Data</span><span>2023</span></div>
+        <h3>Data hygiene and synthetic data</h3>
+        <p>Catalogued the PostgreSQL estate and its personal-data dependencies, built a schema normalisation tool, an S3 orphan finder and duplicate-data fixers, and wrote Python generators for realistic load and test datasets.</p>
+        <div class="foot"><span class="figure">16 PRs of synthetic data tooling</span><span class="stack">Python · PostgreSQL · S3</span></div>
+      </article>
+      <article class="card" data-tags="api">
+        <div class="meta"><span>APIs</span><span>2022</span></div>
+        <h3>Public REST API</h3>
+        <p>A queryable Mongo layer, a deny-by-default authorisation filter, JWT security tests, Sets and Workspaces endpoints with load tests, and the error-handling ADR. Also hardened GraphQL and built the OneDrive integration.</p>
+        <div class="foot"><span class="figure">Secure by default</span><span class="stack">C# · MongoDB · JWT · GraphQL</span></div>
+      </article>
+      <article class="card" data-tags="data">
+        <div class="meta"><span>Data</span><span>2022</span></div>
+        <h3>Analytics platform</h3>
+        <p>Wrote a JavaScript analytics package and rolled it out to six applications and the backend, replacing legacy tracking. Documented GDPR-safe event design in a 15-page guide.</p>
+        <div class="foot"><span class="figure">6 applications</span><span class="stack">TypeScript · Matomo</span></div>
+      </article>
+      <article class="card" data-tags="quality">
+        <div class="meta"><span>Clean-up</span><span>2022 to 2023</span></div>
+        <h3>Decommissions and build</h3>
+        <p>Removed Flash and Flourish code and four retired test stacks from the core monolith. Replaced the scripted build with Nuke and packaged it so other libraries could adopt it in minutes.</p>
+        <div class="foot"><span class="figure">About 190,000 lines removed</span><span class="stack">C# · Nuke · TeamCity · Octopus</span></div>
+      </article>
+      <article class="card oss" data-tags="quality">
+        <div class="meta"><span>Open source</span><span>2026</span></div>
+        <h3>Pacer</h3>
+        <p>An open source performance testing framework for the .NET ecosystem.</p>
+        <div class="foot"><a class="figure" href="https://github.com/WeekTwenty/Pacer" target="_blank" rel="noopener">github.com/WeekTwenty/Pacer</a><span class="stack">C# · .NET</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="practice" aria-labelledby="practice-h">
+    <div class="sec-head">
+      <span class="eyebrow">How I work</span>
+      <h2 id="practice-h">What the record shows</h2>
+    </div>
+    <div class="practice">
+      <div><h3>Own the building blocks</h3><p>The CDK library, the database and caching libraries, the Nuke build, health checks and the API framework are shared pieces other teams build on.</p></div>
+      <div><h3>Write decisions down</h3><p>17 ADRs, 186 new wiki pages and about 20 production runbooks, so the reasoning outlives the pull request.</p></div>
+      <div><h3>Reduce risk and cost</h3><p>Hundreds of thousands of lines of dead code removed, security reviews, recovery planning, least-privilege permissions, circuit breakers and cache safety guards.</p></div>
+      <div><h3>Test what matters</h3><p>Load and performance tests for APIs, caches and services, flaky end-to-end suites moved to integration tests, and synthetic data generators.</p></div>
+      <div><h3>Investigate first</h3><p>114 time-boxed research spikes that ended in decisions on caching, messaging, auth, scheduling and data connectivity.</p></div>
+      <div><h3>Lead AI adoption</h3><p>From AI features in the product to agentic tooling for the engineering team and the Community of Practice that tracks how we use it.</p></div>
+    </div>
+
+    <div class="sec-head" style="margin-top: 48px;">
+      <span class="eyebrow">Code review</span>
+      <h3>1,592+ review votes and 3,331 comments on colleagues' work, about 300 votes a year since 2022</h3>
+    </div>
+    <div class="reviews">
+      <div class="review"><span class="kind">Security</span><p>An authorisation attribute gained two modes with nothing stopping both being set, and the if/else order meant one silently won.</p><p class="out">The author added a guard so a misconfigured attribute fails on first request.</p></div>
+      <div class="review"><span class="kind">Performance</span><p>A loader matched every block against every response in nested loops on a path expected to carry large volumes.</p><p class="out">I showed a parallelised version, which the author shipped.</p></div>
+      <div class="review"><span class="kind">Defect</span><p>A multi-layer cache swallowed exceptions as misses with no log, so a broken layer would have looked like normal traffic.</p><p class="out">The author added exception logging and a unit test.</p></div>
+    </div>
+  </section>
+
+  <section id="writing" aria-labelledby="writing-h">
+    <div class="writing">
+      <div class="sec-head" style="margin-bottom: 0;">
+        <span class="eyebrow">Writing</span>
+        <h2 id="writing-h">Decisions on the record</h2>
+        <div class="facts">
+          <p>Architecture decision records, engineering standards and runbooks I've written. The wiki is the second most active place I work after the core codebase, with 1,160 commits.</p>
+          <p>Standards include the Logging and Monitoring Manifesto, resilience guidance on automatic recovery and safe self-healing, the transactions coding guideline, and a reference for the whole TeamCity estate.</p>
+        </div>
+      </div>
+      <ul class="adr-list">
+        <li><span class="id">API</span><span>Customer and service authentication, PKCE and scopes</span></li>
+        <li><span class="id">API</span><span>Per-organisation rate limits and signing keys</span></li>
+        <li><span class="id">API</span><span>Token revocation, expensive operations and the API front door</span></li>
+        <li><span class="id">API</span><span>Partial vs atomic operations and error handling</span></li>
+        <li><span class="id">Data</span><span>Dealing with transactions across MongoDB and NHibernate</span></li>
+        <li><span class="id">Cache</span><span>Redis vs Valkey, and cache tagging</span></li>
+        <li><span class="id">Ops</span><span>Logging provider</span></li>
+        <li><span class="id">Product</span><span>Analytics event design</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="stack" aria-labelledby="stack-h">
+    <div class="sec-head">
+      <span class="eyebrow">Toolbox</span>
+      <h2 id="stack-h">Stack</h2>
+    </div>
+    <div class="stackgrid">
+      <div><h3>Languages</h3><div class="pills"><span class="pill">C#</span><span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">F# (tests)</span></div></div>
+      <div><h3>Frameworks</h3><div class="pills"><span class="pill">.NET 8 / 10</span><span class="pill">.NET Framework</span><span class="pill">ASP.NET MVC</span><span class="pill">React</span><span class="pill">Angular</span><span class="pill">PySpark</span></div></div>
+      <div><h3>AWS</h3><div class="pills"><span class="pill">CDK</span><span class="pill">Lambda</span><span class="pill">ECS / Fargate</span><span class="pill">Glue</span><span class="pill">SQS</span><span class="pill">EventBridge</span><span class="pill">KMS</span><span class="pill">API Gateway</span><span class="pill">CloudFront</span></div></div>
+      <div><h3>Data</h3><div class="pills"><span class="pill">MongoDB</span><span class="pill">PostgreSQL</span><span class="pill">pgvector</span><span class="pill">Valkey / Redis</span><span class="pill">ClickHouse</span></div></div>
+      <div><h3>Delivery</h3><div class="pills"><span class="pill">TeamCity</span><span class="pill">Octopus</span><span class="pill">Azure Pipelines</span><span class="pill">Nuke</span></div></div>
+      <div><h3>AI</h3><div class="pills"><span class="pill">OpenAI</span><span class="pill">RAG</span><span class="pill">MCP</span><span class="pill">Claude Code</span><span class="pill">Embeddings</span></div></div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="edu">
+      <div class="item"><span class="when">2020 to 2024</span><h3>University of Wolverhampton</h3><p>BSc Digital and Technology (degree apprenticeship), First Class Honours</p></div>
+      <div class="item"><span class="when">2018 to 2020</span><h3>Shrewsbury College</h3><p>Computer Science, D*D*D*</p></div>
+    </div>
+    <div class="contact" style="margin-top: 48px;">
+      <div class="sec-head" style="margin-bottom: 0;">
+        <span class="eyebrow">Contact</span>
+        <h2 id="contact-h">Get in touch</h2>
+        <p class="lede">Based in Shropshire, UK. The best way to reach me is through GitHub or LinkedIn.</p>
+      </div>
+      <div class="cta" style="margin-top: 0;">
+        <a class="btn primary" href="https://github.com/jjnrmason" target="_blank" rel="noopener">github.com/jjnrmason</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Figures come from git history and Azure DevOps, March 2021 to 19 October 2026. Earlier work was tracked in Jira and older source control and isn't counted.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var DATA = [
+    { y: 2021, sub: "from Mar", c: 360, p: 70, r: 36, w: null },
+    { y: 2022, sub: "", c: 1223, p: 214, r: 283, w: 59 },
+    { y: 2023, sub: "", c: 426, p: 67, r: 321, w: 66 },
+    { y: 2024, sub: "", c: 604, p: 69, r: 309, w: 71 },
+    { y: 2025, sub: "", c: 722, p: 90, r: 342, w: 106 },
+    { y: 2026, sub: "to 19 Oct", c: 921, p: 132, r: 301, w: 204 }
+  ];
+  var LABELS = { c: ["Commits per year", "commits"], p: ["Pull requests per year", "pull requests"], r: ["Review votes per year", "review votes"], w: ["Work items closed per year", "work items closed"] };
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("chart");
+  var tip = document.getElementById("tip");
+  var wrap = document.getElementById("chart-wrap");
+  var W = 640, H = 270, M = { t: 24, r: 8, b: 44, l: 48 };
+  var fmt = function (n) { return n.toLocaleString("en-GB"); };
+
+  function niceStep(max) {
+    var raw = max / 4, mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / mag;
+    return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+  }
+  function el(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) {
+      var v = attrs[k];
+      if (typeof v === "string" && v.indexOf("var(") === 0) e.style.setProperty(k, v);
+      else e.setAttribute(k, v);
+    }
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function barPath(x, y, w, h) {
+    var r = Math.min(4, h, w / 2);
+    return "M" + x + "," + (y + h) + "V" + (y + r) + "Q" + x + "," + y + " " + (x + r) + "," + y + "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) + "V" + (y + h) + "Z";
+  }
+
+  function draw(m) {
+    document.getElementById("chart-title").textContent = LABELS[m][0];
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var vals = DATA.map(function (d) { return d[m]; });
+    var max = Math.max.apply(null, vals.filter(function (v) { return v != null; }));
+    var step = niceStep(max), top = Math.ceil(max / step) * step;
+    var iw = W - M.l - M.r, ih = H - M.t - M.b;
+    var band = iw / DATA.length, bw = Math.min(54, band * 0.52);
+    var ys = function (v) { return M.t + ih - (v / top) * ih; };
+
+    for (var t = 0; t <= top + 0.001; t += step) {
+      var gy = ys(t);
+      svg.appendChild(el("line", { x1: M.l, x2: W - M.r, y1: gy, y2: gy, stroke: "var(--line)", "stroke-width": t === 0 ? 1.2 : 1, "stroke-dasharray": t === 0 ? "" : "3 4" }));
+      svg.appendChild(el("text", { x: M.l - 10, y: gy + 4, "text-anchor": "end", fill: "var(--muted)", "font-size": 12, "font-family": "var(--font-mono)" }, fmt(t)));
+    }
+
+    var maxIdx = vals.indexOf(max), lastIdx = DATA.length - 1;
+    DATA.forEach(function (d, i) {
+      var cx = M.l + band * i + band / 2, x = cx - bw / 2, v = d[m];
+      if (v == null) {
+        svg.appendChild(el("rect", { x: x, y: ys(top * 0.12), width: bw, height: ys(0) - ys(top * 0.12), rx: 4, fill: "none", stroke: "var(--line)", "stroke-dasharray": "4 4" }));
+        svg.appendChild(el("text", { x: cx, y: ys(top * 0.12) - 8, "text-anchor": "middle", fill: "var(--muted)", "font-size": 11, "font-family": "var(--font-mono)" }, "in Jira"));
+      } else {
+        var y = ys(v), h = ys(0) - y;
+        svg.appendChild(el("path", { d: barPath(x, y, bw, Math.max(h, 1)), fill: "var(--accent)", "class": "bar" }));
+        if (i === maxIdx || i === lastIdx) {
+          svg.appendChild(el("text", { x: cx, y: y - 8, "text-anchor": "middle", fill: "var(--ink)", "font-size": 13, "font-weight": 600, "font-family": "var(--font-body)" }, fmt(v)));
+        }
+      }
+      svg.appendChild(el("text", { x: cx, y: H - M.b + 20, "text-anchor": "middle", fill: "var(--ink-2)", "font-size": 13, "font-family": "var(--font-mono)" }, String(d.y)));
+      if (d.sub) svg.appendChild(el("text", { x: cx, y: H - M.b + 36, "text-anchor": "middle", fill: "var(--muted)", "font-size": 11, "font-family": "var(--font-body)" }, d.sub));
+
+      var hit = el("rect", { x: M.l + band * i, y: M.t, width: band, height: ih, fill: "transparent", tabindex: 0, "aria-label": d.y + ": " + (v == null ? "no data" : fmt(v) + " " + LABELS[m][1]) });
+      var show = function () {
+        var r = svg.getBoundingClientRect(), s = r.width / W;
+        tip.innerHTML = "<span>" + d.y + (d.sub ? " (" + d.sub + ")" : "") + "</span><br><b>" + (v == null ? "No data" : fmt(v)) + "</b> " + (v == null ? "" : LABELS[m][1]);
+        tip.style.left = Math.min(Math.max(cx * s, 70), r.width - 70) + "px";
+        tip.style.top = ((v == null ? ys(top * 0.12) : ys(v)) * s) + "px";
+        tip.hidden = false;
+      };
+      hit.addEventListener("mouseenter", show);
+      hit.addEventListener("focus", show);
+      hit.addEventListener("mouseleave", function () { tip.hidden = true; });
+      hit.addEventListener("blur", function () { tip.hidden = true; });
+      svg.appendChild(hit);
+    });
+  }
+
+  var segBtns = document.querySelectorAll(".seg button");
+  segBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      segBtns.forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+      tip.hidden = true;
+      draw(b.getAttribute("data-m"));
+    });
+  });
+  draw("c");
+
+  var tb = document.getElementById("tbody");
+  DATA.forEach(function (d) {
+    var tr = document.createElement("tr");
+    [d.y + (d.sub ? " (" + d.sub + ")" : ""), d.c, d.p, d.r, d.w].forEach(function (v, i) {
+      var td = document.createElement(i === 0 ? "th" : "td");
+      if (i === 0) td.scope = "row";
+      td.textContent = v == null ? "–" : (typeof v === "number" ? fmt(v) : v);
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+
+  var chips = document.querySelectorAll(".chip");
+  var cards = document.querySelectorAll("#cards .card");
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      var f = c.getAttribute("data-f");
+      chips.forEach(function (o) { o.setAttribute("aria-pressed", o === c ? "true" : "false"); });
+      cards.forEach(function (card) {
+        card.hidden = !(f === "all" || card.getAttribute("data-tags").split(" ").indexOf(f) !== -1);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
